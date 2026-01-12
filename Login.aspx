@@ -1,8 +1,4 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ElectronicPayment.Login" %>
-<% 
-    Response.CodePage = 65001; 
-    Response.CharSet = "utf-8"; 
-%>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ar" dir="rtl">
