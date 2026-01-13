@@ -1,9 +1,5 @@
-<%@ Page Language="C#"
-    AutoEventWireup="true"
-    CodeBehind="Login.aspx.cs"
-    Inherits="ElectronicPayment.Login"
-    Culture="ar-EG"
-    UICulture="ar-EG" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ElectronicPayment.Login" %>
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ar" dir="rtl">
@@ -94,6 +90,7 @@
 </script>
 </body>
 </html>
+
 
 
 
