@@ -2,8 +2,6 @@
     AutoEventWireup="true"
     CodeBehind="Login.aspx.cs"
     Inherits="ElectronicPayment.Login"
-    RequestEncoding="utf-8"
-    ResponseEncoding="utf-8"
     Culture="ar-EG"
     UICulture="ar-EG" %>
 
@@ -96,5 +94,6 @@
 </script>
 </body>
 </html>
+
 
 
