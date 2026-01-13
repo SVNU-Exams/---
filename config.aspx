@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
 
-  <!-- App Settings -->
   <appSettings>
     <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
   </appSettings>
 
-  <!-- Connection String -->
   <connectionStrings>
     <add name="paymentConnectionString"
          connectionString="Data Source=.;Initial Catalog=payment;Integrated Security=true"
@@ -15,17 +13,14 @@
 
   <system.web>
 
-    <!-- إظهار الأخطاء (مهم للتشخيص) -->
     <customErrors mode="Off" />
 
-    <!-- UTF-8 عربي -->
     <globalization
       requestEncoding="utf-8"
       responseEncoding="utf-8"
       culture="ar-EG"
       uiCulture="ar-EG" />
 
-    <!-- Compilation -->
     <compilation debug="true" targetFramework="4.7.2">
       <buildProviders>
         <add extension=".rdlc"
